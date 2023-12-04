@@ -1,38 +1,56 @@
 package com.scaler.bookmyshow.contoller;
 
-import com.scaler.bookmyshow.models.Region;
-import com.scaler.bookmyshow.models.User;
-import com.scaler.bookmyshow.service.RegionService;
-import com.scaler.bookmyshow.service.TicketService;
-import com.scaler.bookmyshow.service.UserService;
-import com.scaler.bookmyshow.util.DummyObject;
+import com.scaler.bookmyshow.models.*;
+import com.scaler.bookmyshow.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TicketController {
 
     @Autowired
-    TicketService ticketService;
-    @Autowired
-    RegionService regionService;
-    @Autowired
-    UserService userService;
-    @GetMapping("ticket")
-    public ResponseEntity getTicket(){
-        return ResponseEntity.ok("hello");
-    }
-    @GetMapping("region")
-    public ResponseEntity getRegion(){
-        DummyObject dummyObject = new DummyObject();
-        Region region = dummyObject.createObject();
+    InitService initService;
 
-        User user = dummyObject.createUser("Ruchita", "ruchita22@gmail.com", "admin@1234");
-        regionService.addRegion(region);
-        userService.addUser(user);
+    @GetMapping(value = "init")
+    public ResponseEntity getInit(){
+        initService.createObject();
+        User user = initService.createUser("Ruchita", "ruchita22@gmail.com","admin@1234");
 
-        return ResponseEntity.ok(region);
+        return ResponseEntity.ok("done");
     }
+
+    @GetMapping(value = "region")
+    public ResponseEntity findAllRegion(){
+        List<Region> regions = initService.findAllRegion();
+        return ResponseEntity.ok(regions);
+    }
+    @GetMapping(value = "region/theatre")
+    public ResponseEntity findAllTheatreInRegion(){
+        List<String> theatres = initService.findAllTheatreInRegion();
+        return ResponseEntity.ok(theatres);
+    }
+    @GetMapping(value = "region/theatre/movie")
+    public ResponseEntity findAllMovieInTheatre(){
+        List<Movie> movies = initService.findAllMovieInTheatre();
+        return ResponseEntity.ok(movies);
+    }
+    @GetMapping(value = "region/theatre/movie/show")
+    public ResponseEntity findAllOfMovieShow(){
+        List<Show> shows = initService.findAllOfMovieShow();
+        return ResponseEntity.ok(shows);
+    }
+
+    @GetMapping(value = "region/theatre/movie/show/seat")
+    public ResponseEntity findAllShowSeatOfMovie(){
+        List<ShowSeat> showSeats = initService.findAllShowSeatOfMovie();
+        return ResponseEntity.ok(showSeats);
+    }
+
+
+
+
 }

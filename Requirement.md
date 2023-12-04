@@ -18,5 +18,9 @@
 
 <img alt="Local Image" src="src/main/resources/static/images/Bookmyshow_class_diagram.png"/>
 
+**ER Diagram**
+
+<img alt="Local Image" src="src/main/resources/static/images/bookmyshow_ER_Diagram.png"/>
+
 
 

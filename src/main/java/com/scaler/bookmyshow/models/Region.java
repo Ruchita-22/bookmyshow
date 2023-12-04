@@ -10,8 +10,8 @@ import java.util.List;
 @Entity
 public class Region extends BaseModel{      // Greater Noida
     private String name;
-    @OneToMany
-    @JoinColumn(name = "theatre_id")
-    private List<Theatre> theatres;
+//    @OneToMany
+//    @JoinColumn(name = "theatre_id")
+//    private List<Theatre> theatres;
 
 }

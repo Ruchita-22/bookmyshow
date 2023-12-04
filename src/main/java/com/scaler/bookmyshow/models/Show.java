@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name = "bms_show")
 public class Show extends BaseModel{
     @ManyToOne
     private Movie movie;
@@ -20,7 +20,7 @@ public class Show extends BaseModel{
     @ManyToOne
     private Screen screen;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Feature> features;
 
