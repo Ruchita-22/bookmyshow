@@ -1,7 +1,8 @@
 package com.scaler.bookmyshow.service;
 
-import com.scaler.bookmyshow.archieve.dto.TicketResponseDTO;
+import com.scaler.bookmyshow.dto.TicketResponseDTO;
 import com.scaler.bookmyshow.exception.ShowSeatNotAvailableException;
+import com.scaler.bookmyshow.mapper.TicketMapper;
 import com.scaler.bookmyshow.models.Show;
 import com.scaler.bookmyshow.models.ShowSeat;
 import com.scaler.bookmyshow.models.Ticket;
@@ -59,15 +60,8 @@ public class TicketService {
             }
         }
         Ticket ticket = generateTicket(user,show,showSeats,amount);
-        TicketResponseDTO ticketResponseDTO = new TicketResponseDTO();
 
-        ticketResponseDTO.setUserId(ticket.getUser().getId());
-        ticketResponseDTO.setShowId(ticket.getShow().getId());
-        ticketResponseDTO.setShowSeatIds(showSeatIds);
-        ticketResponseDTO.setAmount(ticket.getAmount());
-        ticketResponseDTO.setBookingStatus(ticket.getBookingStatus());
-        ticketResponseDTO.setBookedAt(ticket.getBookedAt());
-        ticketResponseDTO.setPayments(ticket.getPayments());
+        TicketResponseDTO ticketResponseDTO = TicketMapper.ticketToTicketResponseDTO(ticket);
         return ticketResponseDTO;
     }
 

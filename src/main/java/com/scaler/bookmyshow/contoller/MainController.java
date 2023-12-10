@@ -1,19 +1,14 @@
 package com.scaler.bookmyshow.contoller;
 
-import com.scaler.bookmyshow.archieve.dto.ShowResponseDTO;
-import com.scaler.bookmyshow.archieve.dto.ShowSeatResponseDTO;
-import com.scaler.bookmyshow.archieve.dto.TicketResponseDTO;
-import com.scaler.bookmyshow.exception.ShowSeatNotAvailableException;
-import com.scaler.bookmyshow.models.Ticket;
+import com.scaler.bookmyshow.dto.ShowResponseDTO;
+import com.scaler.bookmyshow.dto.ShowSeatResponseDTO;
+import com.scaler.bookmyshow.dto.TicketResponseDTO;
 import com.scaler.bookmyshow.service.MainService;
-import com.scaler.bookmyshow.service.TicketService;
-import com.scaler.bookmyshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,6 +29,11 @@ public class MainController {
     public List<ShowSeatResponseDTO> findAllShowSeatOfShow(@PathVariable("showId") Long showId){
         List<ShowSeatResponseDTO> showSeatResponseDTOS  = mainService.findAllShowSeatOfShow(showId);
         return showSeatResponseDTOS;
+    }
+
+    @GetMapping("user/{userId}/ticket")
+    public List<TicketResponseDTO> showTicketOfUser(@PathVariable("userId") Long userId){
+        return mainService.showTicketOfUser(userId);
     }
 
 

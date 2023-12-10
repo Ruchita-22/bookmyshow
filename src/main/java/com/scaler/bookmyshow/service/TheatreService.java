@@ -1,13 +1,10 @@
 package com.scaler.bookmyshow.service;
 
-import com.scaler.bookmyshow.archieve.dto.TheatreResponseDTO;
+import com.scaler.bookmyshow.dto.TheatreResponseDTO;
 import com.scaler.bookmyshow.models.Theatre;
 import com.scaler.bookmyshow.repository.TheatreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;

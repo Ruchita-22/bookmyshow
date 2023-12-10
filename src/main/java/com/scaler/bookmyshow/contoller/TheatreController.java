@@ -1,6 +1,6 @@
 package com.scaler.bookmyshow.contoller;
 
-import com.scaler.bookmyshow.archieve.dto.TheatreResponseDTO;
+import com.scaler.bookmyshow.dto.TheatreResponseDTO;
 import com.scaler.bookmyshow.models.Theatre;
 import com.scaler.bookmyshow.service.TheatreService;
 import org.springframework.beans.factory.annotation.Autowired;

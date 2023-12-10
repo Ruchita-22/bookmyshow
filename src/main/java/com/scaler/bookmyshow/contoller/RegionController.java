@@ -1,14 +1,13 @@
 package com.scaler.bookmyshow.contoller;
 
-import com.scaler.bookmyshow.archieve.dto.RegionResponseDTO;
-import com.scaler.bookmyshow.archieve.dto.TheatreResponseDTO;
+import com.scaler.bookmyshow.dto.RegionResponseDTO;
+import com.scaler.bookmyshow.dto.TheatreResponseDTO;
 import com.scaler.bookmyshow.models.Region;
 import com.scaler.bookmyshow.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class RegionController {

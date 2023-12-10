@@ -18,7 +18,7 @@ public class InitService1 {
     private ShowRepository showRepository;
     @Autowired
     private UserRepository userRepository;
-   ;
+
     @Autowired
     private MovieRepository movieRepository;
     public Region createObject(){

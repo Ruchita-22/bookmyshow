@@ -1,10 +1,11 @@
 package com.scaler.bookmyshow.service;
 
-import com.scaler.bookmyshow.archieve.dto.ShowResponseDTO;
-import com.scaler.bookmyshow.archieve.dto.ShowSeatResponseDTO;
-import com.scaler.bookmyshow.models.Movie;
-import com.scaler.bookmyshow.models.Show;
-import com.scaler.bookmyshow.models.ShowSeat;
+import com.scaler.bookmyshow.dto.ShowResponseDTO;
+import com.scaler.bookmyshow.dto.ShowSeatResponseDTO;
+import com.scaler.bookmyshow.dto.TicketResponseDTO;
+import com.scaler.bookmyshow.mapper.ShowSeatMapper;
+import com.scaler.bookmyshow.mapper.TicketMapper;
+import com.scaler.bookmyshow.models.*;
 import com.scaler.bookmyshow.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,15 +56,23 @@ public class MainService {
         List<ShowSeat> showSeats = show.getShowSeats();
 
         for(ShowSeat showSeat : showSeats){
-            ShowSeatResponseDTO showSeatResponseDTO = new ShowSeatResponseDTO();
-            showSeatResponseDTO.setId(showSeat.getId());
-            showSeatResponseDTO.setSeatNumber(showSeat.getSeat().getSeatNumber());
-            showSeatResponseDTO.setShowSeatStatus(showSeat.getShowSeatStatus());
-            showSeatResponseDTO.setPrice(showSeat.getPrice());
+            ShowSeatResponseDTO showSeatResponseDTO = ShowSeatMapper.showSeatToShowSeatResponseDTO(showSeat);
             showSeatResponseDTOS.add(showSeatResponseDTO);
         }
 
         return showSeatResponseDTOS;
     }
+    public List<TicketResponseDTO> showTicketOfUser(Long userId){
+        List<TicketResponseDTO> ticketResponseDTOS = new ArrayList<>();
 
+        User user = userRepository.findById(userId).get();
+        List<Ticket> tickets = user.getTickets();
+
+        for (Ticket ticket : tickets){
+            TicketResponseDTO ticketResponseDTO = TicketMapper.ticketToTicketResponseDTO(ticket);
+            ticketResponseDTOS.add(ticketResponseDTO);
+        }
+        return ticketResponseDTOS;
+
+    }
 }

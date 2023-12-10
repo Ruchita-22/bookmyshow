@@ -1,4 +1,4 @@
-package com.scaler.bookmyshow.archieve.dto;
+package com.scaler.bookmyshow.dto;
 
 import com.scaler.bookmyshow.models.Payment;
 import com.scaler.bookmyshow.models.ShowSeat;
@@ -13,6 +13,7 @@ public class TicketResponseDTO {
     private Long userId;
 
     private Long showId;
+    private Long screenId;
     private List<Long> showSeatIds;
     private double amount;
     private List<Payment> payments;

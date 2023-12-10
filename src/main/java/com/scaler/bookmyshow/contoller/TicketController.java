@@ -1,7 +1,6 @@
 package com.scaler.bookmyshow.contoller;
 
-import com.scaler.bookmyshow.archieve.InitService;
-import com.scaler.bookmyshow.archieve.dto.TicketResponseDTO;
+import com.scaler.bookmyshow.dto.TicketResponseDTO;
 import com.scaler.bookmyshow.exception.ShowSeatNotAvailableException;
 import com.scaler.bookmyshow.models.*;
 import com.scaler.bookmyshow.service.*;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class TicketController {

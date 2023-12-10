@@ -1,4 +1,4 @@
-package com.scaler.bookmyshow.archieve.dto;
+package com.scaler.bookmyshow.dto;
 
 import com.scaler.bookmyshow.models.Movie;
 import lombok.Data;
