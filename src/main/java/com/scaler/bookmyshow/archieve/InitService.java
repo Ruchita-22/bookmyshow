@@ -1,13 +1,11 @@
-package com.scaler.bookmyshow.service;
+package com.scaler.bookmyshow.archieve;
 
 import com.scaler.bookmyshow.models.*;
 import com.scaler.bookmyshow.models.enums.Feature;
 import com.scaler.bookmyshow.models.enums.ShowSeatStatus;
 import com.scaler.bookmyshow.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,24 +14,24 @@ import java.util.List;
 @Service
 public class InitService {
     @Autowired
-    RegionRepository regionRepository;
+    private RegionRepository regionRepository;
     @Autowired
-    TheatreRepository theatreRepository;
+    private TheatreRepository theatreRepository;
     @Autowired
-    SeatTypeRepository seatTypeRepository;
+    private SeatTypeRepository seatTypeRepository;
     @Autowired
-    SeatRepository seatRepository;
+    private SeatRepository seatRepository;
     @Autowired
-    ScreenRepository screenRepository;
+    private ScreenRepository screenRepository;
     @Autowired
-    ShowSeatRepository showSeatRepository;
+    private ShowSeatRepository showSeatRepository;
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
     @Autowired
-    ShowRepository showRepository;
+    private ShowRepository showRepository;
     @Autowired
-    UserRepository userRepository;
-    public void createObject(){
+    private UserRepository userRepository;
+    public Theatre createObject(){
         Region region1 = new Region();
         region1.setName("Greater Noida");
         regionRepository.save(region1);
@@ -226,6 +224,7 @@ public class InitService {
 
 
         theatreRepository.save(theatre1);
+        return theatre1;
     }
 
 
@@ -238,29 +237,4 @@ public class InitService {
         return user1;
     }
 
-   public List<Region> findAllRegion(){
-        return regionRepository.findAll();
-   }
-    public List<String> findAllTheatreInRegion(){
-        List<Theatre> theatres = theatreRepository.findAll();
-        List<String> theatreList = new ArrayList<>();
-        for(Theatre theatre : theatres){
-            theatreList.add(theatre.getName());
-        }
-        return theatreList;
-    }
-    public List<Movie> findAllMovieInTheatre(){
-        List<Movie> movies = movieRepository.findAll();
-
-        return movies;
-    }
-
-    public List<Show> findAllOfMovieShow(){
-        List<Show> shows = showRepository.findAll();
-        return shows;
-    }
-    public List<ShowSeat> findAllShowSeatOfMovie(){
-        List<ShowSeat> showSeats = showSeatRepository.findAll();
-        return showSeats;
-    }
 }

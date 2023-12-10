@@ -1,56 +1,51 @@
 package com.scaler.bookmyshow.contoller;
 
+import com.scaler.bookmyshow.archieve.InitService;
+import com.scaler.bookmyshow.archieve.dto.TicketResponseDTO;
+import com.scaler.bookmyshow.exception.ShowSeatNotAvailableException;
 import com.scaler.bookmyshow.models.*;
 import com.scaler.bookmyshow.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TicketController {
-
     @Autowired
-    InitService initService;
+    InitService1 initService1;
+    @Autowired
+    TicketService ticketService;
 
     @GetMapping(value = "init")
     public ResponseEntity getInit(){
-        initService.createObject();
-        User user = initService.createUser("Ruchita", "ruchita22@gmail.com","admin@1234");
-
-        return ResponseEntity.ok("done");
+        Region region = initService1.createObject();
+        User user = initService1.createUser("Ruchita", "ruchita22@gmail.com","admin@1234");
+        return  ResponseEntity.ok(region);
     }
 
-    @GetMapping(value = "region")
-    public ResponseEntity findAllRegion(){
-        List<Region> regions = initService.findAllRegion();
-        return ResponseEntity.ok(regions);
-    }
-    @GetMapping(value = "region/theatre")
-    public ResponseEntity findAllTheatreInRegion(){
-        List<String> theatres = initService.findAllTheatreInRegion();
-        return ResponseEntity.ok(theatres);
-    }
-    @GetMapping(value = "region/theatre/movie")
-    public ResponseEntity findAllMovieInTheatre(){
-        List<Movie> movies = initService.findAllMovieInTheatre();
-        return ResponseEntity.ok(movies);
-    }
-    @GetMapping(value = "region/theatre/movie/show")
-    public ResponseEntity findAllOfMovieShow(){
-        List<Show> shows = initService.findAllOfMovieShow();
-        return ResponseEntity.ok(shows);
-    }
+    @GetMapping(value = "region/{regionId}/theatre/{theatreId}/movie/{movieId}/show/{showId}/showseat/{showSeatId}/book")
+    //region/1/theatre/1/movie/1/show/1/showseat
+    public TicketResponseDTO bookTicket(@PathVariable("showId") Long showId, @PathVariable("showSeatId") Long showSeatId) throws ShowSeatNotAvailableException {
+        List<Long> showseat = new ArrayList<>();
+        showseat.add(showSeatId);
+        long userID = 1L;
+        TicketResponseDTO ticketResponseDTO = null;
+        try {
+            ticketResponseDTO = ticketService.bookTicket(userID,showId, showseat);
+        }catch (ShowSeatNotAvailableException showSeatNotAvailableException){
+            System.out.println("ShowSeatNotAvailableException : "+ showSeatNotAvailableException);
+        }
 
-    @GetMapping(value = "region/theatre/movie/show/seat")
-    public ResponseEntity findAllShowSeatOfMovie(){
-        List<ShowSeat> showSeats = initService.findAllShowSeatOfMovie();
-        return ResponseEntity.ok(showSeats);
+        return ticketResponseDTO;
+
     }
-
-
 
 
 }

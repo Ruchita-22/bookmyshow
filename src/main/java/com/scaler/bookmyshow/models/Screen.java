@@ -10,10 +10,12 @@ import java.util.List;
 @Entity
 public class Screen extends BaseModel{      //Audi1, Audi2
     private String name;
-    @Enumerated(EnumType.ORDINAL)
+
+    @Enumerated(EnumType.STRING)
     private List<Feature> features;
-    @OneToMany
-    @JoinColumn(name = "seat_id")
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "screen_id")
     private List<Seat> seats;
 
 }

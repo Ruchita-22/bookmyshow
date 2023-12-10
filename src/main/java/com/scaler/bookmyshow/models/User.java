@@ -1,5 +1,7 @@
 package com.scaler.bookmyshow.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
@@ -13,6 +15,7 @@ public class User extends BaseModel{
     private String name;
     private String email;
     private  String password;
-    @OneToMany
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Ticket> tickets;
 }

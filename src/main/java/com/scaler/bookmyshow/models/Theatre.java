@@ -1,9 +1,7 @@
 package com.scaler.bookmyshow.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -11,9 +9,15 @@ import java.util.List;
 @Entity
 public class Theatre extends BaseModel{     //PVR
     private String name;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "region_id")         // region id will go in theatre table
+    @JsonBackReference
     private Region region;
-    @OneToMany
-    @JoinColumn(name = "screen_id")
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "theatre_id")        // theatre_id will go in screen table
     private List<Screen> screens;
 }
+
+

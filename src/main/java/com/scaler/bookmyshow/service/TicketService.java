@@ -1,5 +1,6 @@
 package com.scaler.bookmyshow.service;
 
+import com.scaler.bookmyshow.archieve.dto.TicketResponseDTO;
 import com.scaler.bookmyshow.exception.ShowSeatNotAvailableException;
 import com.scaler.bookmyshow.models.Show;
 import com.scaler.bookmyshow.models.ShowSeat;
@@ -31,7 +32,7 @@ public class TicketService {
     @Autowired
     ShowSeatRepository showSeatRepository;
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public Ticket bookTicket(Long userId, Long showId, List<Long> showSeatIds) throws ShowSeatNotAvailableException {
+    public TicketResponseDTO bookTicket(Long userId, Long showId, List<Long> showSeatIds) throws ShowSeatNotAvailableException {
         User user = userRepository.findById(userId).get();
         Show show = showRepository.findById(showId).get();
         for (Long showSeatId : showSeatIds){
@@ -57,7 +58,17 @@ public class TicketService {
                 amount += showSeat.getPrice();
             }
         }
-        return generateTicket(user,show,showSeats,amount);
+        Ticket ticket = generateTicket(user,show,showSeats,amount);
+        TicketResponseDTO ticketResponseDTO = new TicketResponseDTO();
+
+        ticketResponseDTO.setUserId(ticket.getUser().getId());
+        ticketResponseDTO.setShowId(ticket.getShow().getId());
+        ticketResponseDTO.setShowSeatIds(showSeatIds);
+        ticketResponseDTO.setAmount(ticket.getAmount());
+        ticketResponseDTO.setBookingStatus(ticket.getBookingStatus());
+        ticketResponseDTO.setBookedAt(ticket.getBookedAt());
+        ticketResponseDTO.setPayments(ticket.getPayments());
+        return ticketResponseDTO;
     }
 
     private boolean paymentCheck() {
