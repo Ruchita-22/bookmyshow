@@ -48,24 +48,25 @@ Requirements to run this program are :
 ### End Point - API
 
 
-| Endpoint                                                                        | Method | Description                                         |
-|---------------------------------------------------------------------------------|--------|-----------------------------------------------------|
-| `/region`                                                                       | POST   | Add New region                                      |
-| `/region`                                                                       | GET    | Get ALl regions                                     |
-| `/region/{regionId}`                                                            | GET    | Get region by ID                                    |
-| `/region/{regionId}/theatre`                                                    | GET    | Get all theatre in particular region                |
-| `/theatre`                                                                      | PUT    | Add New theatre                                     |
-| `/theatre`                                                                      | GET    | Get ALl theatre                                     |
-| `/theatre/{theatreId}`                                                          | GET    | Get theatre by ID                                   |
-| `/"region/{regionId}/theatre/{theatreId}`                                       | GET    | Get particular theatre in particular region         |
-| `/movie`                                                                        | PUT    | Add New movie                                       |
-| `/movie`                                                                        | GET    | Get ALl movie                                       |
-| `/movie/{movieId}`                                                              | GET    | Get ALl movie                                       |
-| `/region/{regionId}/theatre/{theatreId}/movie`                                  | GET    | Get all movie in particular theatre                 |
-| `/region/{regionId}/theatre/{theatreId}/movie/{movieId}`                        | GET    | Get all movie in particular theatre                 |
-| `/region/{regionId}/theatre/{theatreId}/movie/{movieId}/show`                   | GET    | Get all movie in particular theatre                 |
-| `/region/{regionId}/theatre/{theatreId}/movie/{movieId}/show/{showId}/showseat` | GET    | Get all movie in particular theatre                 |
-| `user/{userId}/ticket`                                                          | GET    | Get all ticket which is booked by particular user   |
+| Endpoint                                                                                          | Method | Description                                           |
+|---------------------------------------------------------------------------------------------------|--------|-------------------------------------------------------|
+| `/region`                                                                                         | POST   | Add New region                                        |
+| `/region`                                                                                         | GET    | Get All regions                                       |
+| `/region/{regionId}`                                                                              | GET    | Get region by ID                                      |
+| `/region/{regionId}/theatre`                                                                      | GET    | Get all theatre in particular region                  |
+| `/theatre`                                                                                        | PUT    | Add New theatre                                       |
+| `/theatre`                                                                                        | GET    | Get All theatre                                       |
+| `/theatre/{theatreId}`                                                                            | GET    | Get theatre by ID                                     |
+| `/"region/{regionId}/theatre/{theatreId}`                                                         | GET    | Get particular theatre in particular region           |
+| `/movie`                                                                                          | PUT    | Add New movie                                         |
+| `/movie`                                                                                          | GET    | Get All movie                                         |
+| `/movie/{movieId}`                                                                                | GET    | Get All movie                                         |
+| `/region/{regionId}/theatre/{theatreId}/movie`                                                    | GET    | Get all movie in particular theatre                   |
+| `/region/{regionId}/theatre/{theatreId}/movie/{movieId}`                                          | GET    | Get all movie in particular theatre                   |
+| `/region/{regionId}/theatre/{theatreId}/movie/{movieId}/show`                                     | GET    | Get all show in particular theatre for particular movie |
+| `/region/{regionId}/theatre/{theatreId}/movie/{movieId}/show/{showId}/showseat`                   | GET    | Get all showSeat for particular show in particular theatre |
+| `region/{regionId}/theatre/{theatreId}/movie/{movieId}/show/{showId}/showseat/{showSeatId}/book`  | GET    | It is used to book ticket for particular movie        |
+| `user/{userId}/ticket`                                                                            | GET    | Get all ticket which is booked by particular user     |
 
 
 
